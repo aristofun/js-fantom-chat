@@ -33,7 +33,7 @@
 
 @media screen and (max-width: 768px) {
   :root {
-    font-size: 86%;
+    /*font-size: 86%;*/
   }
 
   .is-fixed-bottom {
