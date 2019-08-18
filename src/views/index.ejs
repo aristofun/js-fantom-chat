@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/bulma.0.7.5.css">
+    <link rel='stylesheet' href='/css/style.css'/>
+    <!--    <link rel="stylesheet" href="css/debug.css">-->
+
+    <script defer src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
+    <script defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+
+    <script defer src="/js/ejs.min.js"></script>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="/js/chat.js"></script>
+</head>
+<body>
+
+<section class="hero is-primary is-bold is-small">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-3">
+                    <p class="title">Mega chat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section is-marginless is-paddingless">
+    <div class="container">
+        <div class="content notification is-small" id="chatroom">
+
+        </div>
+
+      
+        <form id="sendMessageForm">
+            <div class="is-fixed-bottom has-background-white-bis">
+                <article class="media notaligned fullheight-flex is-block-touch">
+                    <div class="media-content">
+                        <div class="field">
+                            <p class="control">
+                        <textarea class="textarea has-fixed-size" rows="2" id="messageTextArea"
+                                  name="messageTextArea"
+                                  placeholder="Твое сообщение в чат"></textarea>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="media-right is-marginless-touch">
+                        <button type="submit" class="button is-info fullheight is-fullwidth"
+                                id="sendBtn">
+                            <span class="icon is-small"><i class="fas fa-paper-plane"></i></span>
+                            <span>Send</span>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>MegaChat</strong> by <a href="https://twitter.com/aristofun">Michael
+                Butlitsky</a>.
+        </p>
+    </div>
+</footer -->
+
+</body>
+</html>

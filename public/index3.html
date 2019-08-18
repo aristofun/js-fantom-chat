@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="css/bulma.0.7.5.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
+  <script defer src="js/navbars.js"></script>
+  <!--  <link rel="stylesheet" href="css/debug.css">-->
+
+  <style>
+
+    .center, .center-column, .top, .right, .bottom, .left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .navbar-center {
+      flex-grow: 1;
+      /*flex-direction: row;*/
+      justify-content: center;
+    }
+
+    .center-column {
+      flex-direction: column;
+    }
+
+    .top {
+      align-items: flex-start;
+    }
+
+    .right {
+      justify-content: flex-end;
+    }
+
+    .bottom {
+      align-items: flex-end;
+    }
+
+    .left {
+      justify-content: flex-start;
+    }
+
+    .single-spaced, .single-spaced * {
+      line-height: 1;
+    }
+
+    html {
+      background-color: black;
+    }
+
+    .hero {
+      background: grey url(images/hero-1.jpg) center / cover;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        background: grey url(images/hero-2.jpg) center / cover;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        background: grey url(images/hero-3.jpg) center / cover;
+      }
+    }
+
+    @media (max-width: 800px) {
+      :root {
+        font-size: 80%;
+      }
+    }
+
+    #a {
+      grid-area: a;
+    }
+
+    #b {
+      grid-area: b;
+    }
+
+    #c {
+      grid-area: c;
+    }
+
+    #d {
+      grid-area: d;
+    }
+
+    #e {
+      grid-area: e;
+    }
+
+    #grid {
+      width: 768px;
+      display: grid;
+      grid-template-areas: "a a a a" "b c d e";
+      grid-row-gap: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      #grid {
+        grid-template-areas: "a a a" "b c d" "e e e";
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<section class="hero is-fullheight has-background-grey-lighter is-marginless">
+  <div class="hero-head">
+    <nav class="navbar has-text-weight-bold is-transparent" role="navigation"
+         aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img src="images/tesla.svg" alt="Logo" height="90" width="130">
+        </a>
+
+        <a role="button" class="navbar-burger burger" data-target="mainNavBar">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="navbar-menu" id="mainNavBar">
+        <div class="navbar-start navbar-center heading">
+
+          <a class="navbar-item has-text-black">MODEL S </a>
+          <a class="navbar-item has-text-black">MODEL X </a>
+          <a class="navbar-item has-text-black">MODEL 3 </a>
+          <a class="navbar-item has-text-black">ROADTER</a>
+          <a class="navbar-item has-text-black">ENERGY </a>
+        </div>
+
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-small is-danger is-rounded">Shop </a>
+              <a class="button is-small is-rounded">Sign in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <!-- .hero-body -->
+  <header class="hero-body">
+    <div class="is-overlay has-text-centered single-spaced" style="top: 92px;">
+      <h2 class="subtitle is-4 has-text-weight-light has-text-black">Tesla</h2>
+      <h1 class="title is-1 has-text-black">Roadster</h1>
+    </div>
+  </header>
+  <!-- .hero-body -->
+
+  <main class="hero-foot center" style="padding: 2rem; ">
+    <div id="grid">
+
+      <div id="a" class="center-column">
+        <p class="has-text-centered has-text-grey-lighter">
+          ​The quickest car in the world, with record-setting<br>
+          acceleration, range and performance.
+        </p>
+      </div>
+
+      <div id="b" class="center-column">
+        <p class="title has-text-white">
+          <i class="fas fa-tachometer-alt has-text-grey-light"
+             style="width: 0.75em; height: 0.75em;"></i>
+          1.9<span class="is-size-5">s</span>
+        </p>
+        <p class="subtitle has-text-white is-7">0-60 mph</p>
+      </div>
+      <div id="c" class="center-column" style="border-left: 1px solid gray;">
+        <p class="title has-text-white"><span class="is-size-5">+</span>250<span class="is-size-5">mph</span>
+        </p>
+        <p class="subtitle is-7 has-text-white">Top Speed</p>
+      </div>
+
+      <div id="d" class="center-column" style="border-left: 1px solid gray;">
+        <p class="title has-text-white">620</span><span class="is-size-5">mi</span></p>
+        <p class="subtitle is-7 has-text-white">Mile Range</p>
+      </div>
+
+      <div id="e" class="center-column">
+        <a class="button is-danger is-inverted is-rounded is-outlined has-text-weight-bold"
+           style="width: 100%; border: 0.15em solid white;">
+          Reserve Now
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- /.hero-foot -->
+
+<!--  <footer class="hero-foot" style="padding: 2rem;">-->
+<!--    <div class="columns is-centered">-->
+<!--      <div class="column is-two-thirds has-text-centered has-text-grey-lighter">-->
+<!--        The quickest car in the world, with record-setting acceleration<br>-->
+<!--        радиусом и производительностью.-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="columns is-flex is-vcentered is-multiline">-->
+<!--      <div class="column is-offset-2-tablet is-5-tablet is-full-mobile">-->
+<!--        <nav class="level is-mobile has-text-white">-->
+<!--          <div class="level-item has-text-centered">-->
+<!--            <div>-->
+<!--              <p class="title has-text-white">-->
+<!--                <i class="fas fa-tachometer-alt is-size-4"></i> 1.9s</p>-->
+<!--              <p class="is-size-7">0-60 mph</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="level-item has-text-centered" style="border-left: 1px solid gray;">-->
+<!--            <div>-->
+<!--              <p class="title has-text-white">250 <small>mph</small></p>-->
+<!--              <p class="is-size-7">Top Speed</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="level-item has-text-centered" style="border-left: 1px solid gray;">-->
+<!--            <div>-->
+<!--              <p class="title has-text-white">620 <small>mi</small></p>-->
+<!--              <p class="is-size-7">Mid Range</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </nav>-->
+<!--      </div>-->
+
+<!--      <div class="column is-3-tablet is-10-mobile is-offset-1-mobile">-->
+<!--        <div class="buttons">-->
+<!--          <a href="#" class="button is-rounded is-medium is-outlined is-white is-fullwidth">Reserve-->
+<!--            Now</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </footer>-->
+</section>
+
+
+</body>
+</html>

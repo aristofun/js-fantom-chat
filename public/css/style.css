@@ -1,0 +1,45 @@
+
+.media .notaligned {
+  align-items: initial;
+}
+
+.fullheight-flex {
+  align-items: stretch;
+}
+
+.fullheight {
+  height: 100%;
+}
+
+.chatroom {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+
+.is-fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1em 3em 2em;
+  z-index: 30;
+}
+
+
+@media screen and (max-width: 1023px) {
+  .is-marginless-touch {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 80%;
+  }
+
+  .is-fixed-bottom {
+    padding: 0.25em 1em 0.5em;
+  }
+
+}
