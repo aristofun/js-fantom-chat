@@ -9,7 +9,7 @@ const logger = require('morgan');
 
 const app = express();
 
-require('./config/mongoose');
+// require('./config/mongoose');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src/views'));
