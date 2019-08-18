@@ -16,7 +16,7 @@ const chatroom = document.querySelector('#chatroom');
 const chatMessageTemplate = "<div class=\"box is-marginless\">\n" +
   "    <p id=\"messageText\"><%= text %></p>\n" +
   "</div>\n" +
-  "<nav class=\"level is-mobile\">\n" +
+  "<nav class=\"level is-mobile is-size-7\">\n" +
   "    <div class=\"level-left\"></div>\n" +
   "\n" +
   "    <div class=\"level-right\">\n" +
@@ -34,6 +34,12 @@ const addChatMessage = (text) => {
   let chatHtml = ejs.render(chatMessageTemplate, { text: text, time: moment().format('LLLL') }, {});
   // console.log(chatHtml);
   chatroom.insertAdjacentHTML('beforeend', chatHtml);
+
+  //https://www.w3schools.com/jsref/prop_element_scrolltop.asp
+  const body = document.body; // Safari
+  const html = document.documentElement; // Chrome, Firefox, IE and Opera places the overflow at the <html> level, unless else is specified. Therefore, we use the documentElement property for these browsers
+  body.scrollTop = body.scrollHeight;
+  html.scrollTop = html.scrollHeight;
 };
 
 
@@ -45,9 +51,8 @@ ready(() => {
     // console.log('on submit...', e);
     e.preventDefault();
     const text = e.target.elements.messageTextArea.value;
-    console.log('#messageInput', text);
 
-    if (text) socket.emit('sendMessage', text);
+    if (text) socket.emit('userMessage', text);
 
     e.target.elements.messageTextArea.value = '';
   });

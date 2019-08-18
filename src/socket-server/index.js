@@ -9,8 +9,7 @@ const openSocket = (server) => {
 
     socket.broadcast.emit('userMessage', 'New user joined!');
 
-    socket.on('sendMessage', (message) => {
-      console.log('sendMessage', message);
+    socket.on('userMessage', (message) => {
       io.emit('userMessage', message);
     });
 
