@@ -1,15 +1,3 @@
-/** https://stackoverflow.com/a/7053197/1245302 */
-function ready(callback) {
-  // in case the document is already rendered
-  if (document.readyState != 'loading') callback();
-  // modern browsers
-  else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
-  // IE <= 8
-  else document.attachEvent('onreadystatechange', function () {
-      if (document.readyState == 'complete') callback();
-    });
-}
-
 const socket = io();
 const chatroom = document.querySelector('#chatroom');
 
@@ -46,6 +34,7 @@ const addChatMessage = (text) => {
 ready(() => {
   const messageForm = document.querySelector('#sendMessageForm');
   const messageTextArea = document.querySelector('#messageTextArea');
+  const sendLocationBtn = document.querySelector('#sendLocationBtn');
 
   messageForm.addEventListener('submit', (e) => {
     // console.log('on submit...', e);
@@ -57,6 +46,25 @@ ready(() => {
     e.target.elements.messageTextArea.value = '';
   });
 
+
+  sendLocationBtn.addEventListener('click', () => {
+    if (!navigator.geolocation) return openModal('geoNotSupportedModal');
+
+    //https://stackoverflow.com/a/6092416/1245302
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position);
+
+        socket.emit('userLocation', {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+      },
+      (error) => {
+        console.log(error);
+        openModal('geoNotSupportedModal');
+      });
+  });
 
   messageTextArea.addEventListener('keypress', (e) => {
     // console.log(e);
@@ -72,4 +80,10 @@ ready(() => {
   socket.on('userMessage', (message) => {
     addChatMessage(message);
   });
+
+  socket.on('userLocation', (location) => {
+    addChatMessage(JSON.stringify(location));
+  });
 });
+
+

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>-->
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/bulma.0.7.5.css">
     <link rel='stylesheet' href='/css/style.css'/>
@@ -15,6 +15,7 @@
 
     <script defer src="/js/ejs.min.js"></script>
     <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="/js/utils.js"></script>
     <script defer src="/js/chat.js"></script>
 </head>
 <body>
@@ -37,17 +38,46 @@
 
         </div>
 
-      
+
         <form id="sendMessageForm">
-            <div class="is-fixed-bottom has-background-white-bis">
+            <div class="is-fixed-bottom fullheight-flex has-background-white-bis">
                 <article class="media notaligned fullheight-flex is-block-touch">
+
                     <div class="media-content">
-                        <div class="field">
-                            <p class="control">
-                        <textarea class="textarea has-fixed-size" rows="2" id="messageTextArea"
-                                  name="messageTextArea"
-                                  placeholder="Твое сообщение в чат"></textarea>
-                            </p>
+                        <div class="columns is-variable is-1 is-mobile">
+                            <div class="column is-narrow">
+                                <div class="dropdown is-up">
+                                    <div class="dropdown-trigger">
+                                        <button class="button" aria-haspopup="true"
+                                                aria-controls="dropdown-menu7">
+                                                <span class="icon"><i
+                                                            class="fas fa-lg fa-paperclip"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-menu" id="dropdown-menu7" role="menu">
+                                        <div class="dropdown-content">
+                                            <a id="sendLocationBtn" href="#" class="dropdown-item">
+                                                    <span class="icon"><i
+                                                                class="fas fa-map-marker-alt"></i></span>
+                                                Location
+                                            </a>
+<!--                                            <hr class="dropdown-divider">-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="column">
+                                <div class="field">
+                                    <p class="control">
+                                        <textarea class="textarea has-fixed-size" rows="2"
+                                                  id="messageTextArea"
+                                                  name="messageTextArea"
+                                                  placeholder="Твое сообщение в чат"></textarea>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -72,6 +102,17 @@
         </p>
     </div>
 </footer -->
+
+<div class="modal" id="geoNotSupportedModal">
+    <div class="modal-background"></div>
+
+    <div class="modal-content">
+        <div class="notification is-danger">
+            <button class="delete is-dark" aria-label="close"></button>
+            Geo location not supported in your browser :(
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

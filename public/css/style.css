@@ -32,12 +32,17 @@
 }
 
 @media screen and (max-width: 768px) {
-  :root {
-    /*font-size: 86%;*/
-  }
-
   .is-fixed-bottom {
     padding: 0.25em 1em 0.5em;
+  }
+
+  .dropdown {
+    /*display: inline-flex;*/
+    position: inherit;
+  }
+
+  .dropdown-menu {
+    left: auto;
   }
 }
 

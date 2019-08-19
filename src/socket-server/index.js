@@ -13,6 +13,11 @@ const openSocket = (server) => {
       io.emit('userMessage', message);
     });
 
+    socket.on('userLocation', (location) => {
+      console.log(location);
+      io.emit('userLocation', location);
+    });
+
     socket.on('disconnect', () => {
       io.emit('userMessage', 'User left...');
     })
