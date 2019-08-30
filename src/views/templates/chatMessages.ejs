@@ -1,0 +1,39 @@
+<script id="template-textMessage" type="text/html">
+    <div>
+        <div class="box is-marginless">
+            <p id="messageText"><%- "<\%=  text %\>" %></p>
+        </div>
+        <nav class="level is-mobile is-size-7">
+            <div class="level-left"></div>
+
+            <div class="level-right">
+                <div class="level-item">
+                    <span class="icon is-small"><i class="fas fa-clock" aria-hidden="true"></i>                           </span>
+                    <i id="timeSpan"><%- "<\%=  time %\>" %></i>
+                </div>
+            </div>
+        </nav>
+    </div>
+</script>
+
+<script id="template-locationMessage" type="text/html">
+    <div>
+        <div class="box is-marginless" style="height: 700px;">
+            <p id="messageText"><a href="<%- "<\%=  url %\>" %>">Location 📍</a></p>
+
+            <div class="map-responsive">
+            <%- "<\%- frame %\>" %>
+            </div>
+        </div>
+        <nav class="level is-mobile is-size-7">
+            <div class="level-left"></div>
+
+            <div class="level-right">
+                <div class="level-item">
+                    <span class="icon is-small"><i class="fas fa-clock" aria-hidden="true"></i>                           </span>
+                    <i id="timeSpan"><%- "<\%=  time %\>" %></i>
+                </div>
+            </div>
+        </nav>
+    </div>
+</script>

@@ -14,21 +14,21 @@ function getAll(selector) {
   return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 }
 
-let dropdowns;
+let $dropdowns;
 
 const closeDropdowns = () => {
-  dropdowns.forEach(function (el) {
+  $dropdowns.forEach(function (el) {
     el.classList.remove('is-active');
   });
 };
 
 ready(() => {
-  dropdowns = getAll('.dropdown:not(.is-hoverable)');
+  $dropdowns = getAll('.dropdown:not(.is-hoverable)');
 
-
-  if (dropdowns.length > 0) {
-    dropdowns.forEach(function (el) {
+  if ($dropdowns.length > 0) {
+    $dropdowns.forEach(function (el) {
       el.addEventListener('click', (event) => {
+        // console.log('click on dropdown', event);
         event.stopPropagation();
         el.classList.toggle('is-active');
       });
@@ -42,33 +42,31 @@ ready(() => {
 
 // Modals
 
-let rootEl;
-let modals;
-let modalButtons;
-let modalCloses;
+let $rootEl;
+let $modals;
 
 function openModal(target) {
   const _target = document.getElementById(target);
-  rootEl.classList.add('is-clipped');
+  $rootEl.classList.add('is-clipped');
   _target.classList.add('is-active');
 }
 
 function closeModals() {
-  rootEl.classList.remove('is-clipped');
-  modals.forEach(function (el) {
+  $rootEl.classList.remove('is-clipped');
+  $modals.forEach(function (el) {
     el.classList.remove('is-active');
   });
 }
 
 
 ready(() => {
-  rootEl = document.documentElement;
-  modals = getAll('.modal');
-  modalButtons = getAll('.modal-button');
-  modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button, .modal-content .delete');
+  $rootEl = document.documentElement;
+  $modals = getAll('.modal');
+  const $modalButtons = getAll('.modal-button');
+  const $modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button, .modal-content .delete');
 
-  if (modalButtons.length > 0) {
-    modalButtons.forEach(function (el) {
+  if ($modalButtons.length > 0) {
+    $modalButtons.forEach(function (el) {
       el.addEventListener('click', function () {
         const target = el.dataset.target;
         openModal(target);
@@ -76,8 +74,8 @@ ready(() => {
     });
   }
 
-  if (modalCloses.length > 0) {
-    modalCloses.forEach(function (el) {
+  if ($modalCloses.length > 0) {
+    $modalCloses.forEach(function (el) {
       el.addEventListener('click', function () {
         closeModals();
       });
@@ -93,3 +91,15 @@ ready(() => {
     }
   });
 });
+
+
+// Misc
+
+const scrollChatDown = () => {
+  //https://www.w3schools.com/jsref/prop_element_scrolltop.asp
+  const body = document.body; // Safari
+  const html = document.documentElement; // Chrome, Firefox, IE and Opera places the overflow at the <html> level, unless else is specified. Therefore, we use the documentElement property for these browsers
+  body.scrollTop = body.scrollHeight;
+  html.scrollTop = html.scrollHeight;
+};
+

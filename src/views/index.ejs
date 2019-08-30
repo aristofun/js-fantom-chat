@@ -10,6 +10,8 @@
     <!--    <link rel="stylesheet" href="css/debug.css">-->
 
     <script defer src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.8.0/qs.min.js"></script>
+
     <script defer
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 
@@ -17,6 +19,8 @@
     <script defer src="/socket.io/socket.io.js"></script>
     <script defer src="/js/utils.js"></script>
     <script defer src="/js/chat.js"></script>
+
+    <%- include templates/chatMessages.ejs %>
 </head>
 <body>
 
@@ -34,6 +38,8 @@
 
 <section class="section is-marginless is-paddingless">
     <div class="container">
+
+        <!--  all chat messages here  -->
         <div class="content notification is-normal chatroom" id="chatroom">
 
         </div>
@@ -48,25 +54,26 @@
                             <div class="column is-narrow">
                                 <div class="dropdown is-up">
                                     <div class="dropdown-trigger">
-                                        <button class="button" aria-haspopup="true"
+                                        <button class="button" type="button" aria-haspopup="true"
                                                 aria-controls="dropdown-menu7">
-                                                <span class="icon"><i
-                                                            class="fas fa-lg fa-paperclip"></i></span>
+                                            <span class="icon">
+                                                <i class="fas fa-lg fa-paperclip"></i>
+                                            </span>
                                         </button>
                                     </div>
+
                                     <div class="dropdown-menu" id="dropdown-menu7" role="menu">
                                         <div class="dropdown-content">
-                                            <a id="sendLocationBtn" href="#" class="dropdown-item">
-                                                    <span class="icon"><i
-                                                                class="fas fa-map-marker-alt"></i></span>
-                                                Location
-                                            </a>
-<!--                                            <hr class="dropdown-divider">-->
+                                            <a id="sendLocationBtn" type="button" href="#"
+                                               class="dropdown-item">
+                                                    <span class="icon">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                    </span> Location </a>
+                                            <!--                                            <hr class="dropdown-divider">-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="column">
                                 <div class="field">

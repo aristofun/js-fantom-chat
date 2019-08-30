@@ -9,20 +9,26 @@ const openSocket = (server) => {
 
     socket.broadcast.emit('userMessage', 'New user joined!');
 
-    socket.on('userMessage', (message) => {
+    socket.on('userMessage', (message, callback) => {
       io.emit('userMessage', message);
+
+      if (typeof callback === "function") {
+        callback(); // callback('Error message') on error
+      }
     });
 
-    socket.on('userLocation', (location) => {
-      console.log(location);
+    socket.on('userLocation', (location, callback) => {
       io.emit('userLocation', location);
+      if (typeof callback === "function") {
+        callback(); // callback('Error message') on error
+      }
     });
 
     socket.on('disconnect', () => {
       io.emit('userMessage', 'User left...');
     })
   });
-  
+
   return io;
 };
 
