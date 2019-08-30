@@ -68,7 +68,8 @@
 /* https://www.ostraining.com/blog/coding/responsive-google-maps/ */
 .map-responsive {
   overflow: hidden;
-  padding-bottom: 56.25%;
+  /*padding-bottom: 16.25%;*/
+  min-height: 300px;
   position: relative;
   height: 0;
 }

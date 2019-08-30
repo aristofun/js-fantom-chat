@@ -22,7 +22,7 @@ ready(() => {
       url: `https://www.google.com/maps?q=${location.latitude},${location.longitude}`,
       frame: `<iframe
   width="100%"
-  height="100%"
+  height="360"
   allofullscreen
   frameborder="0" style="border:0;"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCRFlYZk-zQjyw1NERRbtfDmxmXj5448nk&q=${location.latitude},${location.longitude}" allowfullscreen>
