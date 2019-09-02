@@ -6,32 +6,9 @@ ready(() => {
   const $chatMessageTemplate = document.querySelector('#template-textMessage');
   const $chatLocationTemplate = document.querySelector('#template-locationMessage');
 
-  const addChatMessage = (text) => {
-    let messageHtml = ejs.render($chatMessageTemplate.innerHTML, {
-      text: text,
-      time: moment().format('LLLL')
-    }, {});
-
+  const addChatPost = (message, template) => {
+    let messageHtml = ejs.render(template.innerHTML, { message });
     $chatroom.insertAdjacentHTML('beforeend', messageHtml);
-
-    scrollChatDown();
-  };
-
-  const addChatLocation = (location) => {
-    let messageHtml = ejs.render($chatLocationTemplate.innerHTML, {
-      url: `https://www.google.com/maps?q=${location.latitude},${location.longitude}`,
-      frame: `<iframe
-  width="100%"
-  height="360"
-  allofullscreen
-  frameborder="0" style="border:0;"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCRFlYZk-zQjyw1NERRbtfDmxmXj5448nk&q=${location.latitude},${location.longitude}" allowfullscreen>
-</iframe>`,
-      time: moment().format('LLLL')
-    }, {});
-
-    $chatroom.insertAdjacentHTML('beforeend', messageHtml);
-
     scrollChatDown();
   };
 
@@ -90,11 +67,11 @@ ready(() => {
   });
 
   socket.on('userMessage', (message) => {
-    addChatMessage(message);
+    addChatPost(message, $chatMessageTemplate);
   });
 
-  socket.on('userLocation', (location) => {
-    addChatLocation(location);
+  socket.on('userLocation', (message) => {
+    addChatPost(message, $chatLocationTemplate);
   });
 });
 

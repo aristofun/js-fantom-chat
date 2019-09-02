@@ -6,7 +6,6 @@
   <title>Hello Bulma!</title>
   <link rel="stylesheet" href="css/bulma.0.7.5.css">
   <script defer src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
-  <script defer src="js/navbars.js"></script>
   <!--  <link rel="stylesheet" href="css/debug.css">-->
 
   <style>
@@ -107,6 +106,33 @@
     }
   </style>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+          el.addEventListener('click', () => {
+
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+
+          });
+        });
+      }
+
+    });
+  </script>
 </head>
 
 <body>
@@ -198,48 +224,46 @@
     </div>
   </main>
 
-  <!-- /.hero-foot -->
+  <!--  <footer class="hero-foot" style="padding: 2rem;">-->
+  <!--    <div class="columns is-centered">-->
+  <!--      <div class="column is-two-thirds has-text-centered has-text-grey-lighter">-->
+  <!--        The quickest car in the world, with record-setting acceleration<br>-->
+  <!--        радиусом и производительностью.-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="columns is-flex is-vcentered is-multiline">-->
+  <!--      <div class="column is-offset-2-tablet is-5-tablet is-full-mobile">-->
+  <!--        <nav class="level is-mobile has-text-white">-->
+  <!--          <div class="level-item has-text-centered">-->
+  <!--            <div>-->
+  <!--              <p class="title has-text-white">-->
+  <!--                <i class="fas fa-tachometer-alt is-size-4"></i> 1.9s</p>-->
+  <!--              <p class="is-size-7">0-60 mph</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="level-item has-text-centered" style="border-left: 1px solid gray;">-->
+  <!--            <div>-->
+  <!--              <p class="title has-text-white">250 <small>mph</small></p>-->
+  <!--              <p class="is-size-7">Top Speed</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="level-item has-text-centered" style="border-left: 1px solid gray;">-->
+  <!--            <div>-->
+  <!--              <p class="title has-text-white">620 <small>mi</small></p>-->
+  <!--              <p class="is-size-7">Mid Range</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </nav>-->
+  <!--      </div>-->
 
-<!--  <footer class="hero-foot" style="padding: 2rem;">-->
-<!--    <div class="columns is-centered">-->
-<!--      <div class="column is-two-thirds has-text-centered has-text-grey-lighter">-->
-<!--        The quickest car in the world, with record-setting acceleration<br>-->
-<!--        радиусом и производительностью.-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="columns is-flex is-vcentered is-multiline">-->
-<!--      <div class="column is-offset-2-tablet is-5-tablet is-full-mobile">-->
-<!--        <nav class="level is-mobile has-text-white">-->
-<!--          <div class="level-item has-text-centered">-->
-<!--            <div>-->
-<!--              <p class="title has-text-white">-->
-<!--                <i class="fas fa-tachometer-alt is-size-4"></i> 1.9s</p>-->
-<!--              <p class="is-size-7">0-60 mph</p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="level-item has-text-centered" style="border-left: 1px solid gray;">-->
-<!--            <div>-->
-<!--              <p class="title has-text-white">250 <small>mph</small></p>-->
-<!--              <p class="is-size-7">Top Speed</p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="level-item has-text-centered" style="border-left: 1px solid gray;">-->
-<!--            <div>-->
-<!--              <p class="title has-text-white">620 <small>mi</small></p>-->
-<!--              <p class="is-size-7">Mid Range</p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </nav>-->
-<!--      </div>-->
-
-<!--      <div class="column is-3-tablet is-10-mobile is-offset-1-mobile">-->
-<!--        <div class="buttons">-->
-<!--          <a href="#" class="button is-rounded is-medium is-outlined is-white is-fullwidth">Reserve-->
-<!--            Now</a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </footer>-->
+  <!--      <div class="column is-3-tablet is-10-mobile is-offset-1-mobile">-->
+  <!--        <div class="buttons">-->
+  <!--          <a href="#" class="button is-rounded is-medium is-outlined is-white is-fullwidth">Reserve-->
+  <!--            Now</a>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </footer>-->
 </section>
 
 

@@ -57,7 +57,7 @@
   width: .625em
 }
 
-.block:not(:last-child), .box:not(:last-child), .breadcrumb:not(:last-child), .content:not(:last-child), .highlight:not(:last-child), .level:not(:last-child), .list:not(:last-child), .message:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .subtitle:not(:last-child), .table-container:not(:last-child), .table:not(:last-child), .tabs:not(:last-child), .title:not(:last-child) {
+.block:not(:last-child), .box:not(:last-child), .breadcrumb:not(:last-child), .content:not(:last-child), .highlight:not(:last-child), .level:not(:last-child), .list:not(:last-child), .chat-message:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .subtitle:not(:last-child), .table-container:not(:last-child), .table:not(:last-child), .tabs:not(:last-child), .title:not(:last-child) {
   margin-bottom: 1.5rem
 }
 
@@ -5733,169 +5733,169 @@ a.list-item {
   margin-bottom: 1em
 }
 
-.message {
+.chat-message {
   background-color: #f5f5f5;
   border-radius: 4px;
   font-size: 1rem
 }
 
-.message strong {
+.chat-message strong {
   color: currentColor
 }
 
-.message a:not(.button):not(.tag):not(.dropdown-item) {
+.chat-message a:not(.button):not(.tag):not(.dropdown-item) {
   color: currentColor;
   text-decoration: underline
 }
 
-.message.is-small {
+.chat-message.is-small {
   font-size: .75rem
 }
 
-.message.is-medium {
+.chat-message.is-medium {
   font-size: 1.25rem
 }
 
-.message.is-large {
+.chat-message.is-large {
   font-size: 1.5rem
 }
 
-.message.is-white {
+.chat-message.is-white {
   background-color: #fff
 }
 
-.message.is-white .message-header {
+.chat-message.is-white .message-header {
   background-color: #fff;
   color: #0a0a0a
 }
 
-.message.is-white .message-body {
+.chat-message.is-white .message-body {
   border-color: #fff;
   color: #4d4d4d
 }
 
-.message.is-black {
+.chat-message.is-black {
   background-color: #fafafa
 }
 
-.message.is-black .message-header {
+.chat-message.is-black .message-header {
   background-color: #0a0a0a;
   color: #fff
 }
 
-.message.is-black .message-body {
+.chat-message.is-black .message-body {
   border-color: #0a0a0a;
   color: #090909
 }
 
-.message.is-light {
+.chat-message.is-light {
   background-color: #fafafa
 }
 
-.message.is-light .message-header {
+.chat-message.is-light .message-header {
   background-color: #f5f5f5;
   color: #363636
 }
 
-.message.is-light .message-body {
+.chat-message.is-light .message-body {
   border-color: #f5f5f5;
   color: #505050
 }
 
-.message.is-dark {
+.chat-message.is-dark {
   background-color: #fafafa
 }
 
-.message.is-dark .message-header {
+.chat-message.is-dark .message-header {
   background-color: #363636;
   color: #f5f5f5
 }
 
-.message.is-dark .message-body {
+.chat-message.is-dark .message-body {
   border-color: #363636;
   color: #2a2a2a
 }
 
-.message.is-primary {
+.chat-message.is-primary {
   background-color: #f5fffd
 }
 
-.message.is-primary .message-header {
+.chat-message.is-primary .message-header {
   background-color: #00d1b2;
   color: #fff
 }
 
-.message.is-primary .message-body {
+.chat-message.is-primary .message-body {
   border-color: #00d1b2;
   color: #021310
 }
 
-.message.is-link {
+.chat-message.is-link {
   background-color: #f6f9fe
 }
 
-.message.is-link .message-header {
+.chat-message.is-link .message-header {
   background-color: #3273dc;
   color: #fff
 }
 
-.message.is-link .message-body {
+.chat-message.is-link .message-body {
   border-color: #3273dc;
   color: #22509a
 }
 
-.message.is-info {
+.chat-message.is-info {
   background-color: #f6fbfe
 }
 
-.message.is-info .message-header {
+.chat-message.is-info .message-header {
   background-color: #209cee;
   color: #fff
 }
 
-.message.is-info .message-body {
+.chat-message.is-info .message-body {
   border-color: #209cee;
   color: #12537e
 }
 
-.message.is-success {
+.chat-message.is-success {
   background-color: #f6fef9
 }
 
-.message.is-success .message-header {
+.chat-message.is-success .message-header {
   background-color: #23d160;
   color: #fff
 }
 
-.message.is-success .message-body {
+.chat-message.is-success .message-body {
   border-color: #23d160;
   color: #0e301a
 }
 
-.message.is-warning {
+.chat-message.is-warning {
   background-color: #fffdf5
 }
 
-.message.is-warning .message-header {
+.chat-message.is-warning .message-header {
   background-color: #ffdd57;
   color: rgba(0, 0, 0, .7)
 }
 
-.message.is-warning .message-body {
+.chat-message.is-warning .message-body {
   border-color: #ffdd57;
   color: #3b3108
 }
 
-.message.is-danger {
+.chat-message.is-danger {
   background-color: #fff5f7
 }
 
-.message.is-danger .message-header {
+.chat-message.is-danger .message-header {
   background-color: #ff3860;
   color: #fff
 }
 
-.message.is-danger .message-body {
+.chat-message.is-danger .message-body {
   border-color: #ff3860;
   color: #cd0930
 }
@@ -15218,7 +15218,7 @@ svg {
   width: .625em
 }
 
-.block:not(:last-child), .box:not(:last-child), .breadcrumb:not(:last-child), .content:not(:last-child), .highlight:not(:last-child), .level:not(:last-child), .list:not(:last-child), .message:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .subtitle:not(:last-child), .table-container:not(:last-child), .table:not(:last-child), .tabs:not(:last-child), .title:not(:last-child) {
+.block:not(:last-child), .box:not(:last-child), .breadcrumb:not(:last-child), .content:not(:last-child), .highlight:not(:last-child), .level:not(:last-child), .list:not(:last-child), .chat-message:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .subtitle:not(:last-child), .table-container:not(:last-child), .table:not(:last-child), .tabs:not(:last-child), .title:not(:last-child) {
   margin-bottom: 1.5rem
 }
 
@@ -20894,169 +20894,169 @@ a.list-item {
   margin-bottom: 1em
 }
 
-.message {
+.chat-message {
   background-color: #f5f5f5;
   border-radius: 4px;
   font-size: 1rem
 }
 
-.message strong {
+.chat-message strong {
   color: currentColor
 }
 
-.message a:not(.button):not(.tag):not(.dropdown-item) {
+.chat-message a:not(.button):not(.tag):not(.dropdown-item) {
   color: currentColor;
   text-decoration: underline
 }
 
-.message.is-small {
+.chat-message.is-small {
   font-size: .75rem
 }
 
-.message.is-medium {
+.chat-message.is-medium {
   font-size: 1.25rem
 }
 
-.message.is-large {
+.chat-message.is-large {
   font-size: 1.5rem
 }
 
-.message.is-white {
+.chat-message.is-white {
   background-color: #fff
 }
 
-.message.is-white .message-header {
+.chat-message.is-white .message-header {
   background-color: #fff;
   color: #0a0a0a
 }
 
-.message.is-white .message-body {
+.chat-message.is-white .message-body {
   border-color: #fff;
   color: #4d4d4d
 }
 
-.message.is-black {
+.chat-message.is-black {
   background-color: #fafafa
 }
 
-.message.is-black .message-header {
+.chat-message.is-black .message-header {
   background-color: #0a0a0a;
   color: #fff
 }
 
-.message.is-black .message-body {
+.chat-message.is-black .message-body {
   border-color: #0a0a0a;
   color: #090909
 }
 
-.message.is-light {
+.chat-message.is-light {
   background-color: #fafafa
 }
 
-.message.is-light .message-header {
+.chat-message.is-light .message-header {
   background-color: #f5f5f5;
   color: #363636
 }
 
-.message.is-light .message-body {
+.chat-message.is-light .message-body {
   border-color: #f5f5f5;
   color: #505050
 }
 
-.message.is-dark {
+.chat-message.is-dark {
   background-color: #fafafa
 }
 
-.message.is-dark .message-header {
+.chat-message.is-dark .message-header {
   background-color: #363636;
   color: #f5f5f5
 }
 
-.message.is-dark .message-body {
+.chat-message.is-dark .message-body {
   border-color: #363636;
   color: #2a2a2a
 }
 
-.message.is-primary {
+.chat-message.is-primary {
   background-color: #f5fffd
 }
 
-.message.is-primary .message-header {
+.chat-message.is-primary .message-header {
   background-color: #00d1b2;
   color: #fff
 }
 
-.message.is-primary .message-body {
+.chat-message.is-primary .message-body {
   border-color: #00d1b2;
   color: #021310
 }
 
-.message.is-link {
+.chat-message.is-link {
   background-color: #f6f9fe
 }
 
-.message.is-link .message-header {
+.chat-message.is-link .message-header {
   background-color: #3273dc;
   color: #fff
 }
 
-.message.is-link .message-body {
+.chat-message.is-link .message-body {
   border-color: #3273dc;
   color: #22509a
 }
 
-.message.is-info {
+.chat-message.is-info {
   background-color: #f6fbfe
 }
 
-.message.is-info .message-header {
+.chat-message.is-info .message-header {
   background-color: #209cee;
   color: #fff
 }
 
-.message.is-info .message-body {
+.chat-message.is-info .message-body {
   border-color: #209cee;
   color: #12537e
 }
 
-.message.is-success {
+.chat-message.is-success {
   background-color: #f6fef9
 }
 
-.message.is-success .message-header {
+.chat-message.is-success .message-header {
   background-color: #23d160;
   color: #fff
 }
 
-.message.is-success .message-body {
+.chat-message.is-success .message-body {
   border-color: #23d160;
   color: #0e301a
 }
 
-.message.is-warning {
+.chat-message.is-warning {
   background-color: #fffdf5
 }
 
-.message.is-warning .message-header {
+.chat-message.is-warning .message-header {
   background-color: #ffdd57;
   color: rgba(0, 0, 0, .7)
 }
 
-.message.is-warning .message-body {
+.chat-message.is-warning .message-body {
   border-color: #ffdd57;
   color: #3b3108
 }
 
-.message.is-danger {
+.chat-message.is-danger {
   background-color: #fff5f7
 }
 
-.message.is-danger .message-header {
+.chat-message.is-danger .message-header {
   background-color: #ff3860;
   color: #fff
 }
 
-.message.is-danger .message-body {
+.chat-message.is-danger .message-body {
   border-color: #ff3860;
   color: #cd0930
 }

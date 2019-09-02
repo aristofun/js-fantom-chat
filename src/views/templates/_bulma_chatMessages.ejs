@@ -1,0 +1,35 @@
+<script id="template-textMessage" type="text/html">
+    <div class="box  chatmessagebox">
+        <p id="messageText"><%- "<\%=  message.content %\>" %></p>
+
+        <div class="has-text-right is-size-7">
+            <span class="icon"><i class="fas fa-clock" aria-hidden="true"></i></span>
+            <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+        </div>
+    </div>
+</script>
+
+<script id="template-locationMessage" type="text/html">
+    <div class="box chatmessagebox">
+        <p id="messageText"><a
+                    href="<%- "<\%=  `https://www.google.com/maps?q=${message.content.latitude},${message.content.longitude}` %\>" %>"
+                    target="_blank" class="button is-small">
+                Open maps 📍</a></p>
+
+        <div class="map-responsive">
+            <iframe
+                    width="100%"
+                    height="360"
+                    allofullscreen
+                    frameborder="0" style="border:0;"
+                    src="<%- "<\%=  `https://www.google.com/maps/embed/v1/place?key=AIzaSyCRFlYZk-zQjyw1NERRbtfDmxmXj5448nk&q=${message.content.latitude},${message.content.longitude}` %\>" %>"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="has-text-right is-size-7">
+            <span class="icon"><i class="fas fa-clock" aria-hidden="true"></i></span>
+            <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+        </div>
+    </div>
+</script>

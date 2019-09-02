@@ -1,39 +1,46 @@
 <script id="template-textMessage" type="text/html">
-    <div>
-        <div class="box is-marginless">
-            <p id="messageText"><%- "<\%=  text %\>" %></p>
-        </div>
-        <nav class="level is-mobile is-size-7">
-            <div class="level-left"></div>
+    <div class="chat-message">
+        <p>
+            <span class="message__name">Some User Name</span>
 
-            <div class="level-right">
-                <div class="level-item">
-                    <span class="icon is-small"><i class="fas fa-clock" aria-hidden="true"></i>                           </span>
-                    <i id="timeSpan"><%- "<\%=  time %\>" %></i>
-                </div>
-            </div>
-        </nav>
+            <span class="message__meta">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+            </span>
+        </p>
+        <p><%- "<\%=  message.content %\>" %></p>
     </div>
 </script>
 
+
 <script id="template-locationMessage" type="text/html">
-    <div>
-        <div class="box is-marginless">
-            <p id="messageText"><a href="<%- "<\%=  url %\>" %>">Location 📍</a></p>
+    <div class="chat-message">
+        <p>
+            <span class="message__name">Some User Name</span>
+            <span class="message__meta">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+            </span>
+        </p>
 
-            <div class="map-responsive">
-            <%- "<\%- frame %\>" %>
-            </div>
+        <p>
+            <a href="<%- "<\%=  `https://www.google.com/maps?q=${message.content.latitude},${message.content.longitude}` %\>" %>"
+               target="_blank" class="button is-small">
+                Open maps 📍</a>
+        </p>
+
+        <p>
+        <div class="map-responsive">
+            <iframe
+                    width="100%"
+                    height="360"
+                    allofullscreen
+                    frameborder="1" style="border:grey 1px;"
+                    src="<%- "<\%=  `https://www.google.com/maps/embed/v1/place?key=AIzaSyCRFlYZk-zQjyw1NERRbtfDmxmXj5448nk&q=${message.content.latitude},${message.content.longitude}` %\>" %>"
+                    allowfullscreen>
+            </iframe>
         </div>
-        <nav class="level is-mobile is-size-7">
-            <div class="level-left"></div>
-
-            <div class="level-right">
-                <div class="level-item">
-                    <span class="icon is-small"><i class="fas fa-clock" aria-hidden="true"></i>                           </span>
-                    <i id="timeSpan"><%- "<\%=  time %\>" %></i>
-                </div>
-            </div>
-        </nav>
+        </p>
+        
     </div>
 </script>

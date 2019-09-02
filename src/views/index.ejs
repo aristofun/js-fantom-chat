@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>-->
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/bulma.0.7.5.css">
-    <link rel='stylesheet' href='/css/style.css'/>
+    <title>JS/Socket.io chat</title>
+    <link rel="icon" href="/images/favicon.png">
+    <link rel='stylesheet' href='/css/bulma.0.7.5.css'/>
+    <link rel='stylesheet' href='/css/styles.css'/>
     <!--    <link rel="stylesheet" href="css/debug.css">-->
 
     <script defer src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.8.0/qs.min.js"></script>
-
     <script defer
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 
-    <script defer src="/js/ejs.min.js"></script>
     <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="/js/ejs.min.js"></script>
     <script defer src="/js/utils.js"></script>
     <script defer src="/js/chat.js"></script>
 
@@ -24,102 +24,46 @@
 </head>
 <body>
 
-<section class="hero is-primary is-bold is-small">
+<section class="hero is-light is-bold is-fullheight">
     <div class="hero-body">
         <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-3">
-                    <p class="title">Mega chat</p>
+            <div class="columns is-mobile is-centered">
+                <div class="column is-6-mobile is-4-tablet is-3-desktop">
+                    <div class="card">
+                        <div class="card-content">
+                            <form action="/chat">
+                                <div class="field">
+                                    <label class="label">Username</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="userName"
+                                               placeholder="Your nickname...">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Room</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="roomName"
+                                               placeholder="Chat room ID">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="control">
+                                        <button class="button is-link is-fullwidth is-medium"
+                                                type="submit">Join
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section is-marginless is-paddingless">
-    <div class="container">
-
-        <!--  all chat messages here  -->
-        <div class="content notification is-normal chatroom" id="chatroom">
-
-        </div>
-
-
-        <form id="sendMessageForm">
-            <div class="is-fixed-bottom fullheight-flex has-background-white-bis">
-                <article class="media notaligned fullheight-flex is-block-touch">
-
-                    <div class="media-content">
-                        <div class="columns is-variable is-1 is-mobile">
-                            <div class="column is-narrow">
-                                <div class="dropdown is-up">
-                                    <div class="dropdown-trigger">
-                                        <button class="button" type="button" aria-haspopup="true"
-                                                aria-controls="dropdown-menu7">
-                                            <span class="icon">
-                                                <i class="fas fa-lg fa-paperclip"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-
-                                    <div class="dropdown-menu" id="dropdown-menu7" role="menu">
-                                        <div class="dropdown-content">
-                                            <a id="sendLocationBtn" type="button" href="#"
-                                               class="dropdown-item">
-                                                    <span class="icon">
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                    </span> Location </a>
-                                            <!--                                            <hr class="dropdown-divider">-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="column">
-                                <div class="field">
-                                    <p class="control">
-                                        <textarea class="textarea has-fixed-size" rows="2"
-                                                  id="messageTextArea"
-                                                  name="messageTextArea"
-                                                  placeholder="Твое сообщение в чат"></textarea>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="media-right is-marginless-touch">
-                        <button type="submit" class="button is-info fullheight is-fullwidth"
-                                id="sendBtn">
-                            <span class="icon is-small"><i class="fas fa-paper-plane"></i></span>
-                            <span>Send</span>
-                        </button>
-                    </div>
-                </article>
-            </div>
-        </form>
-    </div>
-</section>
-
-<!-- footer class="footer">
-    <div class="content has-text-centered">
-        <p>
-            <strong>MegaChat</strong> by <a href="https://twitter.com/aristofun">Michael
-                Butlitsky</a>.
-        </p>
-    </div>
-</footer -->
-
-<div class="modal" id="geoNotSupportedModal">
-    <div class="modal-background"></div>
-
-    <div class="modal-content">
-        <div class="notification is-danger">
-            <button class="delete is-dark" aria-label="close"></button>
-            Geo location not supported in your browser :(
-        </div>
-    </div>
-</div>
 
 </body>
 </html>

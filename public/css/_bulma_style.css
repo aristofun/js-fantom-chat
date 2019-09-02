@@ -22,12 +22,18 @@
 }
 
 .chatroom {
-  padding-bottom: 6rem;
+  padding: 1rem 0.5rem 7rem;
+}
+
+.chatmessagebox {
+  padding-bottom: 0.3rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 @media screen and (max-width: 1023px) {
-  .is-marginless-touch {
-    margin: 0;
+  .is-margintop-touch {
+    margin: 0.5rem 0 0;
   }
 }
 
@@ -46,12 +52,16 @@
   }
 }
 
+.textarea {
+  background: #eee;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   select:focus,
   textarea:focus,
   input:focus {
     font-size: 16px;
-    background: #eee;
+    background: white;
   }
 }
 
@@ -80,4 +90,12 @@
   height: 100%;
   width: 100%;
   position: absolute;
+}
+
+.chat_sidebar {
+  /*height: 100vh;*/
+  color: white;
+  background: #333744;
+  width: 200px;
+  overflow-y: scroll
 }
