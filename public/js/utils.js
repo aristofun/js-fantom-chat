@@ -45,9 +45,11 @@ ready(() => {
 let $rootEl;
 let $modals;
 
-function openModal(target) {
+function openModal(target, message) {
   const _target = document.getElementById(target);
   $rootEl.classList.add('is-clipped');
+  if (message) _target.querySelector('#message').innerHTML = message;
+
   _target.classList.add('is-active');
 }
 

@@ -1,7 +1,7 @@
 <script id="template-textMessage" type="text/html">
     <div class="chat-message">
         <p>
-            <span class="message__name">Some User Name</span>
+            <span class="message__name"><%- "<\%=  message.userName %\>" %></span>
 
             <span class="message__meta">
                 <i class="fas fa-clock" aria-hidden="true"></i>
@@ -16,7 +16,8 @@
 <script id="template-locationMessage" type="text/html">
     <div class="chat-message">
         <p>
-            <span class="message__name">Some User Name</span>
+            <span class="message__name"><%- "<\%=  message.userName %\>" %></span>
+            
             <span class="message__meta">
                 <i class="fas fa-clock" aria-hidden="true"></i>
                 <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>

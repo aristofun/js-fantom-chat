@@ -1,33 +1,66 @@
 const socket = require('socket.io');
-const { m } = require('../utils/messages');
+const { m } = require('../utils/messages-processing');
+const uDB = require('../utils/users-tracking');
+
+
+function sendMessage(socket, io, message, messageType, callback) {
+  const userId = uDB.getUserId(socket.id);
+
+  if (!userId) {
+    if (typeof callback === "function") callback('No such user in the room');
+  } else {
+    io.to(userId.roomName).emit(messageType, m(message, userId.userName));
+    if (typeof callback === "function") callback();
+  }
+}
+
+
+// Main socket functions wrapper
 
 const openSocket = (server) => {
   const io = socket(server);
 
+  //
   io.on('connection', (socket) => {
-    console.log('New socket client');
-    socket.emit('message', m(`Welcome to server ${JSON.stringify(server.address())}`));
+    console.log('New socket client', socket.id);
 
-    socket.broadcast.emit('userMessage', m('New user joined!'));
+    socket.on('join', ({ userName, roomName }, callback) => {
+      const { userId, error } = uDB.addUser(socket.id, userName, roomName);
 
-    socket.on('userMessage', (message, callback) => {
-      io.emit('userMessage', m(message));
+      if (error && typeof callback === "function") {
+        return callback(error);
+      }
+
+      socket.join(userId.roomName);
+      socket.emit('userMessage', m(`Welcome to server ${JSON.stringify(server.address())}`, userId.userName));
+      socket.broadcast.to(userId.roomName).emit('userMessage', m(`${userId.userName} has joined`, userId.userName));
 
       if (typeof callback === "function") {
-        callback(); // callback('Error message') on error
+        callback(); // Success ack
       }
+    });
+
+
+    socket.on('userMessage', (message, callback) => {
+      sendMessage(socket, io, message, 'userMessage', callback);
     });
 
     socket.on('userLocation', (location, callback) => {
-      io.emit('userLocation', m(location));
-      if (typeof callback === "function") {
-        callback(); // callback('Error message') on error
-      }
+      sendMessage(socket, io, location, 'userLocation', callback);
     });
 
-    socket.on('disconnect', () => {
-      io.emit('userMessage', m('User left...'));
-    })
+
+    socket.on('disconnect', (callback) => {
+      const userId = uDB.removeUser(socket.id);
+
+      if (!userId && typeof callback === "function") {
+        return callback('No user');
+      }
+
+      if (userId) {
+        io.to(userId.roomName).emit('userMessage', m(`${userId.userName} has left...`, userId.userName));
+      }
+    });
   });
 
   return io;

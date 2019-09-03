@@ -4,23 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>-->
-    <title>JS/Socket.io chat</title>
+    <title><%= title %></title>
     <link rel="icon" href="/images/favicon.png">
     <link rel='stylesheet' href='/css/bulma.0.7.5.css'/>
     <link rel='stylesheet' href='/css/styles.css'/>
     <!--    <link rel="stylesheet" href="css/debug.css">-->
 
     <script defer src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.8.0/qs.min.js"></script>
-    <script defer
-            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-
-    <script defer src="/socket.io/socket.io.js"></script>
-    <script defer src="/js/ejs.min.js"></script>
-    <script defer src="/js/utils.js"></script>
-    <script defer src="/js/chat.js"></script>
-
-    <%- include templates/chatMessages.ejs %>
 </head>
 <body>
 
@@ -29,6 +19,7 @@
         <div class="container">
             <div class="columns is-mobile is-centered">
                 <div class="column is-6-mobile is-4-tablet is-3-desktop">
+                    <h1 class="title is-5">Realtime chat app</h1>
                     <div class="card">
                         <div class="card-content">
                             <form action="/chat">
@@ -36,7 +27,7 @@
                                     <label class="label">Username</label>
                                     <div class="control">
                                         <input class="input" type="text" name="userName"
-                                               placeholder="Your nickname...">
+                                               placeholder="Your nickname..." required>
                                     </div>
                                 </div>
 
@@ -44,7 +35,7 @@
                                     <label class="label">Room</label>
                                     <div class="control">
                                         <input class="input" type="text" name="roomName"
-                                               placeholder="Chat room ID">
+                                               placeholder="Chat room ID" required>
                                     </div>
                                 </div>
 

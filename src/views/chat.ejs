@@ -28,7 +28,7 @@
     <div class="chat__sidebar">
 
     </div>
-    
+
     <div class="chat__main">
         <div id="chatroom" class="chat__messages">
 
@@ -36,20 +36,37 @@
 
         <div class="compose">
             <form id="sendMessageForm">
-                <input name="message" class="input is-medium" id="messageTextArea" placeholder="Message">
-                
-                <button type="submit" class="button is-info is-medium" id="sendBtn">
-                    <span class="icon is-small"><i
-                                class="fas fa-paper-plane"></i></span>
-                    <span>Send</span>
-                </button>
+                <div class="container">
+                    <div class="columns is-1">
+                        <div class="column">
+
+                            <input required name="message" class="input is-normal"
+                                   id="messageTextArea"
+                                   placeholder="Message">
+                        </div>
+
+                        <div class="column is-narrow">
+
+
+                            <button type="submit" class="button is-info is-normal is-fullwidth"
+                                    id="sendBtn">
+                                <span class="icon is-small"><i
+                                            class="fas fa-paper-plane"></i></span>
+                                <span>Send</span>
+                            </button>
+                        </div>
+
+                        <div class="column is-narrow">
+                            <a id="sendLocationBtn" href="#"
+                               class="button is-info is-normal is-outlined is-fullwidth">
+                                <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                                <span>location</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
             </form>
-            
-            <a id="sendLocationBtn" type="button" href="#"
-               class="button is-info is-medium is-outlined">
-                <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
-                <span>location</span>
-            </a>
         </div>
     </div>
 </div>
@@ -63,6 +80,38 @@
             <button class="delete is-dark" aria-label="close"></button>
             Geo location not supported in your browser :(
         </div>
+    </div>
+</div>
+
+<div class="modal" id="roomJoinErrorModal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <article class="message is-danger">
+            <div class="message-header">
+                <p>Can't join</p>
+                <button class="delete" aria-label="close"></button>
+            </div>
+
+            <div class="message-body content" id="message">
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<div class="modal" id="messageErrorModal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <article class="message is-warning">
+            <div class="message-header">
+                <p>Error sending message</p>
+                <button class="delete" aria-label="close"></button>
+            </div>
+
+            <div class="message-body content" id="message">
+            </div>
+        </article>
+
     </div>
 </div>
 
