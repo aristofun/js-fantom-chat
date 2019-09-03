@@ -32,11 +32,12 @@ const openSocket = (server) => {
       }
 
       socket.join(userId.roomName);
-      socket.emit('userMessage', m(`Welcome to server ${JSON.stringify(server.address())}`, userId.userName));
 
       const note = m(`${userId.userName} has joined`);
       note['joined'] = true;
       socket.broadcast.to(userId.roomName).emit('userAddedRemoved', note);
+      note['content'] = `${userId.userName}, welcome to server`;
+      socket.emit('userAddedRemoved', note);
 
       io.to(userId.roomName).emit('userListUpdate',
         { userIds: uDB.getUserIdsInRoom(userId.roomName), roomName: userId.roomName }
