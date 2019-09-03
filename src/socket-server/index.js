@@ -33,7 +33,14 @@ const openSocket = (server) => {
 
       socket.join(userId.roomName);
       socket.emit('userMessage', m(`Welcome to server ${JSON.stringify(server.address())}`, userId.userName));
-      socket.broadcast.to(userId.roomName).emit('userMessage', m(`${userId.userName} has joined`, userId.userName));
+
+      const note = m(`${userId.userName} has joined`);
+      note['joined'] = true;
+      socket.broadcast.to(userId.roomName).emit('userAddedRemoved', note);
+
+      io.to(userId.roomName).emit('userListUpdate',
+        { userIds: uDB.getUserIdsInRoom(userId.roomName), roomName: userId.roomName }
+      );
 
       if (typeof callback === "function") {
         callback(); // Success ack
@@ -58,7 +65,14 @@ const openSocket = (server) => {
       }
 
       if (userId) {
-        io.to(userId.roomName).emit('userMessage', m(`${userId.userName} has left...`, userId.userName));
+        const note = m(`${userId.userName} has left`);
+        note['joined'] = false;
+        io.to(userId.roomName).emit('userAddedRemoved', note);
+
+        io.to(userId.roomName).emit('userListUpdate',
+          { userIds: uDB.getUserIdsInRoom(userId.roomName), roomName: userId.roomName }
+        );
+
       }
     });
   });

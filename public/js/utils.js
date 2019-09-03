@@ -97,11 +97,3 @@ ready(() => {
 
 // Misc
 
-const scrollChatDown = () => {
-  //https://www.w3schools.com/jsref/prop_element_scrolltop.asp
-  const body = document.body; // Safari
-  const html = document.documentElement; // Chrome, Firefox, IE and Opera places the overflow at the <html> level, unless else is specified. Therefore, we use the documentElement property for these browsers
-  body.scrollTop = body.scrollHeight;
-  html.scrollTop = html.scrollHeight;
-};
-

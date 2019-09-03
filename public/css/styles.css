@@ -95,7 +95,15 @@ button:disabled {
   color: white;
   background: #333744;
   min-width: 200px;
+  max-width: 300px;
   overflow-y: scroll;
+  /* https://stackoverflow.com/a/36150764/1245302 */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .chat__main {
@@ -126,6 +134,11 @@ button:disabled {
 
 .chat-message {
   margin-bottom: 16px;
+}
+
+.chat-info {
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 .message__name {
@@ -174,22 +187,32 @@ button:disabled {
 
 .room-title {
   font-weight: 400;
-  font-size: 22px;
+  font-size: 24px;
   background: #2c2f3a;
-  padding: 24px;
+
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-bottom: 12px;
 }
 
 .list-title {
   font-weight: 500;
   font-size: 18px;
-  margin-bottom: 4px;
-  padding: 12px 24px 0 24px;
+  margin-bottom: 16px;
+  padding-top: 0px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-bottom: 12px;
 }
 
 .users {
   list-style-type: none;
-  font-weight: 300;
-  padding: 12px 24px 0 24px;
+  font-weight: 400;
+  padding-top: 0px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-bottom: 24px;
 }
 
 /* MB custom */
@@ -246,12 +269,15 @@ button:disabled {
 
 @media screen and (max-width: 768px) {
   .chat__sidebar {
+    visibility: hidden;
     height: 100vh;
     color: white;
     background: #333744;
-    min-width: 120px;
+    min-width: 1px;
+    max-width: 2px;
+    overflow-x: hidden;
     overflow-y: scroll;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .chat__main {
@@ -261,4 +287,9 @@ button:disabled {
   .chat__messages {
     font-size: 14px;
   }
+}
+
+
+.copyright {
+  margin-bottom: 24px;
 }

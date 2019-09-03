@@ -20,13 +20,36 @@
     <script defer src="/js/utils.js"></script>
     <script defer src="/js/chat.js"></script>
 
-    <%- include templates/chatMessages.ejs %>
+    <%- include templates/chat.ejs %>
+    <%- include templates/sidebar.ejs %>
 </head>
 <body>
 
 <div class="chat">
     <div class="chat__sidebar">
+        <div id="sidebar">
 
+        </div>
+
+        <br>
+        <div class="copyright">
+
+            <div class="has-text-grey-lighter has-text-centered content is-small">
+                <p>
+                    JS chat by Michael Butlitsky
+                </p>
+                <p>
+                    <a class="button is-normal is-light is-outlined"
+                       href="https://github.com/aristofun"
+                       target="_blank">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                        <span>aristofun</span>
+                    </a>
+                </p>
+            </div>
+        </div>
     </div>
 
     <div class="chat__main">

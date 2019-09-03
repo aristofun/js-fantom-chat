@@ -8,10 +8,13 @@ ready(() => {
   const $messageTextArea = document.querySelector('#messageTextArea');
   const $sendLocationBtn = document.querySelector('#sendLocationBtn');
   const $submitBtn = $messageForm.querySelector('#sendBtn');
+  const $sidebar = document.querySelector('#sidebar');
 
   // Templates
   const $chatMessageTemplate = document.querySelector('#template-textMessage');
   const $chatLocationTemplate = document.querySelector('#template-locationMessage');
+  const $userAddedTemplate = document.querySelector('#template-userAddedRemoved');
+  const $sidebarTemplate = document.querySelector('#template-sidebar');
 
   // Options
   moment.locale('en-il');
@@ -23,6 +26,28 @@ ready(() => {
     let messageHtml = ejs.render(template.innerHTML, { message });
     $chatroom.insertAdjacentHTML('beforeend', messageHtml);
     scrollChatDown();
+  };
+
+  const scrollChatDown = () => {
+    const newMessageNode = $chatroom.lastElementChild;
+    const newMessageHeight = newMessageNode.offsetHeight
+      + parseInt(getComputedStyle(newMessageNode).marginBottom);
+
+    const visibleHeight = $chatroom.offsetHeight;
+    const chatFullHeight = $chatroom.scrollHeight;
+    const scrollOffset = $chatroom.scrollTop + visibleHeight;
+
+    //
+    if (chatFullHeight - newMessageHeight - 20 <= scrollOffset) {
+      // scroll
+      $chatroom.scrollTop = $chatroom.scrollHeight;
+    }
+
+    //https://www.w3schools.com/jsref/prop_element_scrolltop.asp
+    // const body = document.body; // Safari
+    // const html = document.documentElement; // Chrome, Firefox, IE and Opera places the overflow at the <html> level, unless else is specified. Therefore, we use the documentElement property for these browsers
+    // body.scrollTop = body.scrollHeight;
+    // html.scrollTop = html.scrollHeight;
   };
 
 
@@ -77,12 +102,16 @@ ready(() => {
 
 
   // Socket.io callbacks
-  socket.on('userMessage', (message) => {
-    addChatPost(message, $chatMessageTemplate);
-  });
+  socket.on('userMessage', (message) => addChatPost(message, $chatMessageTemplate));
+  socket.on('userLocation', (message) => addChatPost(message, $chatLocationTemplate));
+  socket.on('userAddedRemoved', (message) => addChatPost(message, $userAddedTemplate));
 
-  socket.on('userLocation', (message) => {
-    addChatPost(message, $chatLocationTemplate);
+  socket.on('userListUpdate', ({ roomName, userIds }) => {
+    console.log(userIds, roomName);
+    console.log($sidebarTemplate, $sidebar);
+
+    let sidebarHtml = ejs.render($sidebarTemplate.innerHTML, { roomName, userIds });
+    $sidebar.innerHTML = sidebarHtml;
   });
 
   // console.log(userName, roomName);
