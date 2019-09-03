@@ -9,11 +9,11 @@ const router = require('express-promise-router')();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Realtime disposable chat' });
+  res.render('index', { title: 'Fantom disposable chat' });
 });
 
 router.get('/chat', (req, res, next) => {
-  res.render('chat', { title: 'JS/Socket.io chat' });
+  res.render('chat', { title: 'Ghost chat in pure JavaScript' });
 });
 
 module.exports = router;
