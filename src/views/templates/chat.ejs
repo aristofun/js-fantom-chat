@@ -46,7 +46,7 @@
                     height="360"
                     allofullscreen
                     frameborder="1" style="border:grey 1px;"
-                    src="<%- "<\%=  `https://www.google.com/maps/embed/v1/place?key=AIzaSyCRFlYZk-zQjyw1NERRbtfDmxmXj5448nk&q=${message.content.latitude},${message.content.longitude}` %\>" %>"
+                    src="<%- `https://www.google.com/maps/embed/v1/place?key=${process.env.GMAPS_API_KEY}&q=` %><%- "<\%=  `${message.content.latitude},${message.content.longitude}` %\>" %>"
                     allowfullscreen>
             </iframe>
         </div>
