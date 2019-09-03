@@ -1,0 +1,56 @@
+<script id="template-textMessage" type="text/html">
+    <div class="chat-message">
+        <p>
+            <span class="message__name"><%- "<\%=  message.userName %\>" %></span>
+
+            <span class="message__meta">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+            </span>
+        </p>
+        <p><%- "<\%=  message.content %\>" %></p>
+    </div>
+</script>
+
+
+<script id="template-userAddedRemoved" type="text/html">
+    <div class="chat-info">
+        <span class="tag is-medium <%- "<\%=  message.joined ? 'is-success' : 'is-danger' %\>" %>"><%- "<\%=  message.content %\>" %>
+        at&nbsp;
+            <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+        </span>
+    </div>
+</script>
+
+<script id="template-locationMessage" type="text/html">
+    <div class="chat-message">
+        <p>
+            <span class="message__name"><%- "<\%=  message.userName %\>" %></span>
+
+            <span class="message__meta">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+            </span>
+        </p>
+
+        <p>
+            <a href="<%- "<\%=  `https://www.google.com/maps?q=${message.content.latitude},${message.content.longitude}` %\>" %>"
+               target="_blank" class="button is-small">
+                Open maps 📍</a>
+        </p>
+
+        <p>
+        <div class="map-responsive">
+            <iframe
+                    width="100%"
+                    height="360"
+                    allofullscreen
+                    frameborder="1" style="border:grey 1px;"
+                    src="<%- "<\%=  `https://www.google.com/maps/embed/v1/place?key=AIzaSyCRFlYZk-zQjyw1NERRbtfDmxmXj5448nk&q=${message.content.latitude},${message.content.longitude}` %\>" %>"
+                    allowfullscreen>
+            </iframe>
+        </div>
+        </p>
+
+    </div>
+</script>

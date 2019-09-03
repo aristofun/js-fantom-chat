@@ -13,11 +13,20 @@
 </script>
 
 
+<script id="template-userAddedRemoved" type="text/html">
+    <div class="chat-info">
+        <span class="tag is-medium <%- "<\%=  message.joined ? 'is-success' : 'is-danger' %\>" %>"><%- "<\%=  message.content %\>" %>
+        at&nbsp;
+            <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
+        </span>
+    </div>
+</script>
+
 <script id="template-locationMessage" type="text/html">
     <div class="chat-message">
         <p>
             <span class="message__name"><%- "<\%=  message.userName %\>" %></span>
-            
+
             <span class="message__meta">
                 <i class="fas fa-clock" aria-hidden="true"></i>
                 <i id="timeSpan"><%- "<\%=  moment(message.time).format('h:mm') %\>" %></i>
@@ -42,6 +51,6 @@
             </iframe>
         </div>
         </p>
-        
+
     </div>
 </script>
