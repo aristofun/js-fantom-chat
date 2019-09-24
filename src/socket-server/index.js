@@ -19,7 +19,6 @@ function sendMessage(socket, io, message, messageType, callback) {
 
 const openSocket = (server) => {
   const io = socket(server);
-
   //
   io.on('connection', (socket) => {
     console.log('New socket client', socket.id);

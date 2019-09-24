@@ -1,0 +1,22 @@
+# Simple services health checkup for paranoics and occasional use
+---
+- name: Docker node Healthchecks
+  hosts: all
+  remote_user: '{{ _remote_user }}'
+
+  tasks:
+    - shell: systemctl status docker
+#      when: "'docker' in group_names|join(' ')"
+      when: "'docker' in inventory_hostname"
+      ignore_errors: yes
+
+    - service:
+        name: docker
+        state: started
+      when: "'docker' in inventory_hostname"
+      ignore_errors: yes
+
+    - name: Inspect swarm
+      docker_swarm:
+        state: inspect
+      register: swarm_info

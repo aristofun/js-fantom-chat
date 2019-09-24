@@ -1,5 +1,7 @@
 const router = require('express-promise-router')();
 
+const createError = require('http-errors');
+
 // require models
 
 // require controllers
@@ -9,7 +11,7 @@ const router = require('express-promise-router')();
 
 /* GET home page. */
 router.get('/qu', (req, res, next) => {
-  res.render('index', { title: 'Express !!!!' });
+  next(createError(500, 'fuck you'));
 });
 
 module.exports = router;

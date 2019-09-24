@@ -15,8 +15,11 @@ const app = express();
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
+console.log('running in ', process.env.NODE_ENV);
+
 if (process.env.NODE_ENV !== 'test') {
-  app.use(logger('dev'));
+  if (process.env.NODE_ENV === 'production') app.use(logger('short'));
+  else app.use(logger('dev'));
 }
 
 app.use(express.json());
@@ -39,7 +42,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get('env') === 'dev' ? err : {};
 
   // render the error page
   const status = err.status || 500;

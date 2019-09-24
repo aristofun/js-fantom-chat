@@ -1,0 +1,30 @@
+# Basic Docker install and swarm init
+#
+---
+- name: Install Docker Engine
+  hosts: docker*
+  remote_user: root
+
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+  tasks:
+    - name: Additional packages
+      apt: "pkg={{ item }} state=latest"
+      with_items: '{{ _addons }}'
+      when: _addons is defined
+
+# https://docs.ansible.com/ansible/latest/modules/docker_swarm_module.html
+
+    - name: Init a new swarm with default parameters
+      docker_swarm:
+        state: present
+        advertise_addr: ansible_host
+      when: swarm_head
+      register: swarm_info
+
+
+#  handlers:
+#    - name: restart nginx
+#      service: name=nginx state=restarted

@@ -1,0 +1,37 @@
+---
+- name: playground
+  hosts: all
+  remote_user: '{{ _remote_user }}'
+  gather_facts: false
+  become: true
+
+  tasks:
+#    - include_vars:
+#        file: ../../config/database.yml
+#        name: railsdb
+
+#    - set_fact:
+#        db: '{{railsdb|map(_appstages)}}'
+#        db: '[ {% for k, v in railsdb.items() %}{% if k in _appstages %}{{ v }},{% endif %} {% endfor %} ]'
+
+
+    - name: Print some debug information
+      vars:
+#        msg: "{{ host_name }}"
+        msg: "{{ group_names |join(' ') }}"
+      debug:
+        msg: "{{ msg }}"
+
+    - name: "Ansible | List all known variables and facts"
+      debug:
+        var: hostvars[inventory_hostname]
+#
+#    - name: copy all
+#      debug:
+#        msg: '{{ item.dest }}'
+#      with_items: '{{ _copy_files }}'
+
+#    - debug:
+#        msg: "{{ ((item.pool|default (5))|int + 1) * 5 }}"
+#      with_items:
+#        - '{{ railsdb.production }}'

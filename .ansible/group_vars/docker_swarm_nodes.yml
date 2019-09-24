@@ -1,0 +1,34 @@
+# Configuration applied to docker-swarm-node server group.
+#
+# This host rolls up Docker Engine ready to serve as a swarm node
+
+---
+#=== EDIT THIS! ================================================================
+
+# for SSL certificates notifications etc.
+#_admin_email: site1@example.com
+
+# no wildcards!
+#_ssl_domains:
+#  - domains:
+#    - example.com
+#    - www.example.coom
+#    - help.example.com
+
+
+# Docker Swarm node options
+docker_edition: 'ce'
+docker_package: "docker-{{ docker_edition }}"
+docker_package_state: present
+
+docker_service_state: started
+docker_service_enabled: true
+docker_restart_handler_state: restarted
+
+docker_install_compose: false
+
+pip_package: python3-pip
+pip_executable: pip3
+
+pip_install_packages:
+  - name: docker

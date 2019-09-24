@@ -1,0 +1,32 @@
+# Basic configuration applied to all servers in all groups.
+# Variables may be overriden in a group specific YAML config.
+#
+# For example you can have different remote users for different server groups.
+# You can even narrow it down to hosts specific vars, but we're aiming
+# for simple deploy, right?
+#
+
+---
+_language: en_US.UTF-8 # system LANG, LANGUAGE options
+_locale: ru_RU.UTF-8   # system LC_COLLATE, LC_ALL options
+_timezone: Europe/Moscow # server's timezone
+
+_aptupgrade: yes # upgrade APT packages before provisioning
+
+_remote_user: root
+
+#---- MISC: additional options for advanced users (uncomment to activate) ------
+# see misc_book.yml for details
+#
+# It can be useful to set these options in other groups, for example to tweak
+# crontab and Swapfile differently for Postgres and Redis hosts
+#
+# Customize swapfile settings (see https://github.com/Oefenweb/ansible-swapfile)
+swapfile_size: 512MB # 512MB, 1G etc.
+swapfile_swappiness: '5'
+
+# Email to notify about cron tasks execution
+_cron_mailto: aristofun@yandex.ru
+#
+# Which python to use on a remote host (if not autodetected)
+ansible_python_interpreter: /usr/bin/python3
