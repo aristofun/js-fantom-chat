@@ -1,0 +1,56 @@
+# Docker config files provisioning
+---
+- name: Prepare docker hosts
+  hosts: docker*
+  max_fail_percentage: 1
+  order: sorted
+  remote_user: '{{ _remote_user }}'
+  become: false
+
+  tasks:
+    - name: Detect Swarm Leader # https://stackoverflow.com/a/32218765/1245302
+      set_fact:
+        swarm_leader_host: "{{ item.value.ansible_host }}"
+        swarm_info: "{{ item.value.swarm_info }}"
+      when: item.value.swarm_role == 'leader'
+      with_dict: "{{ hostvars }}"
+      loop_control:
+        label: "{{ item.value.ansible_host }} - {{ item.value.swarm_info }}"  # https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#loop-control
+
+    - name: Join a swarm cluster as a manager
+      docker_swarm:
+        state: join
+        advertise_addr: ansible_host
+        remote_addrs: "{{ swarm_leader_host }}"
+        join_token: "{{ swarm_info.swarm_facts.JoinTokens.Manager }}"
+      when: swarm_role == 'manager'
+
+    - name: Join a swarm cluster as a worker
+      docker_swarm:
+        state: join
+        advertise_addr: ansible_host
+        remote_addrs: "{{ swarm_leader_host }}"
+        join_token: "{{ swarm_info.swarm_facts.JoinTokens.Worker }}"
+      when: swarm_role == 'worker'
+
+#  handlers:
+#    - name: restart nginx
+#      become: true
+#      service: name=nginx state=restarted
+
+#    - role: nickhammond.logrotate
+#      become: true
+#
+#      logrotate_scripts:
+#        - name: '{{ _site.name }}'
+#          path: '{{ _site.logs_path }}/*.log'
+#          options:
+#            - daily
+#            - rotate 7
+#            - missingok
+#            - compress
+#            - delaycompress
+#            - notifempty
+#            - create 0666 {{ _remote_user }} {{ _remote_user }}
+#          when: _site.logs_path is defined
+#

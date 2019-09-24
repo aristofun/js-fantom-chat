@@ -2,6 +2,7 @@
 ---
 - name: APT update
   hosts: all
+  max_fail_percentage: 1
   remote_user: root
 
   tasks:

@@ -4,7 +4,6 @@
 
 ---
 #=== EDIT THIS! ================================================================
-
 # for SSL certificates notifications etc.
 #_admin_email: site1@example.com
 
@@ -32,3 +31,7 @@ pip_executable: pip3
 
 pip_install_packages:
   - name: docker
+
+swarm_dispatcher_heartbeat_period: 45
+swarm_raft_election_tick: 100
+swarm_raft_heartbeat_tick: 10

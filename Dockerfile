@@ -10,7 +10,8 @@ ENV NODE_ENV $NODE_ENV
 # default to port 3000 for node, and 9229 and 9230 (tests) for debug
 ARG PORT=3000
 ENV PORT $PORT
-EXPOSE $PORT  # 9229 9230
+EXPOSE $PORT
+# 9229 9230
 
 # install dependencies first, in a different location for easier app bind mounting for local development
 # due to default /opt permissions we have to create the dir with root and change perms

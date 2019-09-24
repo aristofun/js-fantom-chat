@@ -6,26 +6,28 @@
   become: true
 
   tasks:
-#    - include_vars:
-#        file: ../../config/database.yml
-#        name: railsdb
+    #    - include_vars:
+    #        file: ../../config/database.yml
+    #        name: railsdb
 
-#    - set_fact:
-#        db: '{{railsdb|map(_appstages)}}'
-#        db: '[ {% for k, v in railsdb.items() %}{% if k in _appstages %}{{ v }},{% endif %} {% endfor %} ]'
+    #    - set_fact:
+    #        db: '{{railsdb|map(_appstages)}}'
+    #        db: '[ {% for k, v in railsdb.items() %}{% if k in _appstages %}{{ v }},{% endif %} {% endfor %} ]'
 
 
     - name: Print some debug information
       vars:
-#        msg: "{{ host_name }}"
+        #        msg: "{{ host_name }}"
         msg: "{{ group_names |join(' ') }}"
       debug:
         msg: "{{ msg }}"
 
-    - name: "Ansible | List all known variables and facts"
-      debug:
-        var: hostvars[inventory_hostname]
-#
+
+    - debug:
+        #        var: hostvars[inventory_hostname]
+        msg: "{{ swarm_leader_host }}"
+#        msg: "{{ hostvars | selectattr('swarm_role', 'equalto', 'leader') | map(attribute='ansible_host') | join(',')}}"
+
 #    - name: copy all
 #      debug:
 #        msg: '{{ item.dest }}'

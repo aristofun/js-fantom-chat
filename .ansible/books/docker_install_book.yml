@@ -3,6 +3,8 @@
 ---
 - name: Install Docker Engine
   hosts: docker*
+  max_fail_percentage: 1
+  order: sorted
   remote_user: root
 
   roles:
@@ -20,9 +22,22 @@
     - name: Init a new swarm with default parameters
       docker_swarm:
         state: present
-        advertise_addr: ansible_host
-      when: swarm_head
+        advertise_addr: "{{ ansible_host }}"
+        dispatcher_heartbeat_period: "{{ swarm_dispatcher_heartbeat_period }}"
+        election_tick: "{{ swarm_raft_election_tick }}"
+        heartbeat_tick: "{{ swarm_raft_heartbeat_tick }}"
+      when: swarm_role == 'leader'
+
+    - set_fact:
+        swarm_leader_host: "{{ ansible_host }}"
+
+    - name: Inspect swarm
+      docker_swarm_info:
+        nodes: yes
+        services: yes
+        tasks: yes
       register: swarm_info
+      when: swarm_role == 'leader'
 
 
 #  handlers:

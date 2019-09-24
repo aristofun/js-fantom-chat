@@ -8,6 +8,7 @@
 ---
 - name: Setup locale and timezone
   hosts: all
+  max_fail_percentage: 1
   remote_user: root
 
   tasks:

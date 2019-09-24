@@ -1,4 +1,5 @@
 ---
+
 # System playbooks
 # Provisioning all app independent VPS nut and bolts
 - import_playbook: aptupgrade.yml
@@ -7,6 +8,6 @@
 
 # Docker related playbooks
 - import_playbook: docker_install_book.yml
-- import_playbook: swarm_config_book.yml
+- import_playbook: docker_swarm_config_book.yml
 - import_playbook: docker_healthcheck_book.yml
 
