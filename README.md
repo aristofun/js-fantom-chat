@@ -8,7 +8,7 @@ HTTP VPS version: http://178.62.184.188:8088
 Heroku HTTPS: https://fantom-chat.herokuapp.com/
 
 
-## Some Bulma design demos
+## My Bulma responsive designs demo
 
 https://fantom-chat.herokuapp.com/_playground1.html  
 https://fantom-chat.herokuapp.com/_playground2.html  
