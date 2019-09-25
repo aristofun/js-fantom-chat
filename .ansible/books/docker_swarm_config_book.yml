@@ -11,18 +11,19 @@
     - name: Detect Swarm Leader # https://stackoverflow.com/a/32218765/1245302
       set_fact:
         swarm_leader_host: "{{ item.value.ansible_host }}"
-        swarm_info: "{{ item.value.swarm_info }}"
+        swarm_worker_token: "{{ item.value.swarm_worker_token.stdout_lines[0] }}"
+        swarm_manager_token: "{{ item.value.swarm_manager_token.stdout_lines[0] }}"
       when: item.value.swarm_role == 'leader'
       with_dict: "{{ hostvars }}"
       loop_control:
-        label: "{{ item.value.ansible_host }} - {{ item.value.swarm_info }}"  # https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#loop-control
+        label: "{{ item.value.ansible_host }} - {{ item.value.swarm_manager_token }}"  # https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#loop-control
 
     - name: Join a swarm cluster as a manager
       docker_swarm:
         state: join
         advertise_addr: ansible_host
         remote_addrs: "{{ swarm_leader_host }}"
-        join_token: "{{ swarm_info.swarm_facts.JoinTokens.Manager }}"
+        join_token: "{{ swarm_manager_token }}"
       when: swarm_role == 'manager'
 
     - name: Join a swarm cluster as a worker
@@ -30,7 +31,7 @@
         state: join
         advertise_addr: ansible_host
         remote_addrs: "{{ swarm_leader_host }}"
-        join_token: "{{ swarm_info.swarm_facts.JoinTokens.Worker }}"
+        join_token: "{{ swarm_worker_token }}"
       when: swarm_role == 'worker'
 
 #  handlers:

@@ -6,7 +6,7 @@
 - import_playbook: localetimezone_book.yml
 - import_playbook: misc_book.yml
 
-# Docker related playbooks
+# Docker&Swarm playbooks
 - import_playbook: docker_install_book.yml
 - import_playbook: docker_swarm_config_book.yml
 - import_playbook: docker_healthcheck_book.yml

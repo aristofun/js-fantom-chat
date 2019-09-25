@@ -1,6 +1,6 @@
 # based on https://github.com/BretFisher/node-docker-good-defaults/blob/master/Dockerfile
 
-FROM node:12
+FROM node:12-slim
 
 # set our node environment, either development or production
 # defaults to production, compose overrides this to development on build and run
@@ -10,8 +10,7 @@ ENV NODE_ENV $NODE_ENV
 # default to port 3000 for node, and 9229 and 9230 (tests) for debug
 ARG PORT=3000
 ENV PORT $PORT
-EXPOSE $PORT
-# 9229 9230
+EXPOSE $PORT 9229 9230
 
 # install dependencies first, in a different location for easier app bind mounting for local development
 # due to default /opt permissions we have to create the dir with root and change perms
@@ -23,8 +22,9 @@ WORKDIR /opt/node_app
 # user who runs the app.
 # https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#non-root-user
 USER node
+
 COPY package.json package-lock.json* ./
-RUN npm install --no-optional && npm cache clean --force
+RUN npm install && npm cache clean --force
 ENV PATH /opt/node_app/node_modules/.bin:$PATH
 
 # check every 30s to ensure this service returns HTTP 200
@@ -34,8 +34,13 @@ HEALTHCHECK --interval=45s CMD node healthcheck.js
 WORKDIR /opt/node_app/app
 COPY . .
 
-#COPY docker-entrypoint.sh /usr/local/bin/
-#ENTRYPOINT ["docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /usr/local/bin/
+
+# https://github.com/docker-library/postgres/issues/296
+#RUN chmod 777 /usr/local/bin/docker-entrypoint.sh \
+#    && ln -s /usr/local/bin/docker-entrypoint.sh /
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 
 # if you want to use npm start instead, then use `docker run --init in production`

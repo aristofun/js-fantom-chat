@@ -3,12 +3,12 @@
 ---
 - name: Install Docker Engine
   hosts: docker*
-  max_fail_percentage: 1
-  order: sorted
+  max_fail_percentage: 1 # stop rolling dockers if any node fails
+  order: sorted # workaround for bug https://github.com/ansible/ansible/issues/34861
   remote_user: root
 
   roles:
-    - geerlingguy.pip
+    - geerlingguy.pip # for ansible-docker control
     - geerlingguy.docker
 
   tasks:
@@ -23,20 +23,26 @@
       docker_swarm:
         state: present
         advertise_addr: "{{ ansible_host }}"
-        dispatcher_heartbeat_period: "{{ swarm_dispatcher_heartbeat_period }}"
         election_tick: "{{ swarm_raft_election_tick }}"
         heartbeat_tick: "{{ swarm_raft_heartbeat_tick }}"
       when: swarm_role == 'leader'
 
+    - name: Set correct heartbit and CA expiry
+      shell: docker swarm update --cert-expiry {{ swarm_dispatcher_ca_period }} --dispatcher-heartbeat {{ swarm_dispatcher_heartbeat_period }}
+      when: swarm_role == 'leader'
+
     - set_fact:
         swarm_leader_host: "{{ ansible_host }}"
+      when: swarm_role == 'leader'
 
-    - name: Inspect swarm
-      docker_swarm_info:
-        nodes: yes
-        services: yes
-        tasks: yes
-      register: swarm_info
+    - name: Get Swarm Worker tocken
+      shell: docker swarm join-token worker -q
+      register: swarm_worker_token
+      when: swarm_role == 'leader'
+
+    - name: Get Swarm Manager tocken
+      shell: docker swarm join-token worker -q
+      register: swarm_manager_token
       when: swarm_role == 'leader'
 
 

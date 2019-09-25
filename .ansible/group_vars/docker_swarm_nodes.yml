@@ -24,7 +24,7 @@ docker_service_state: started
 docker_service_enabled: true
 docker_restart_handler_state: restarted
 
-docker_install_compose: false
+docker_install_compose: true
 
 pip_package: python3-pip
 pip_executable: pip3
@@ -32,6 +32,8 @@ pip_executable: pip3
 pip_install_packages:
   - name: docker
 
-swarm_dispatcher_heartbeat_period: 45
-swarm_raft_election_tick: 100
-swarm_raft_heartbeat_tick: 10
+# Make swarm raft less aggressive
+swarm_dispatcher_ca_period: 2160h
+swarm_dispatcher_heartbeat_period: 22s
+swarm_raft_election_tick: 200
+swarm_raft_heartbeat_tick: 3

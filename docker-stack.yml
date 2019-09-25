@@ -1,0 +1,19 @@
+version: '3.7'
+
+# a stack-file version of this for running in Swarm services
+
+services:
+  node:
+    # reminder, don't use latest tag in production, use versions created by CI/CD
+    image: registry.gitlab.com/aristofun/docker-tests/socketchat-app:latest
+    env_file: ./config/${NODE_ENV:-production}.env
+    ports:
+      - 8088:3000
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+    deploy:
+      replicas: 1
+
+#secrets:
+#  mongo_root:
+#    file: ...

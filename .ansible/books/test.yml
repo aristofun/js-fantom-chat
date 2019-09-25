@@ -2,7 +2,7 @@
 - name: playground
   hosts: all
   remote_user: '{{ _remote_user }}'
-  gather_facts: false
+  gather_facts: true
   become: true
 
   tasks:
@@ -14,18 +14,20 @@
     #        db: '{{railsdb|map(_appstages)}}'
     #        db: '[ {% for k, v in railsdb.items() %}{% if k in _appstages %}{{ v }},{% endif %} {% endfor %} ]'
 
+    - name: Set correct heartbit and CA expiry
+      shell: docker swarm update --cert-expiry {{ swarm_dispatcher_ca_period }} --dispatcher-heartbeat {{ swarm_dispatcher_heartbeat_period }}
+      when: swarm_role == 'leader'
 
     - name: Print some debug information
       vars:
         #        msg: "{{ host_name }}"
-        msg: "{{ group_names |join(' ') }}"
       debug:
-        msg: "{{ msg }}"
+#        msg: "{{ msg }}"
 
 
     - debug:
         #        var: hostvars[inventory_hostname]
-        msg: "{{ swarm_leader_host }}"
+        msg: "{{ swarm_worker_token.stdout_lines }}"
 #        msg: "{{ hostvars | selectattr('swarm_role', 'equalto', 'leader') | map(attribute='ansible_host') | join(',')}}"
 
 #    - name: copy all

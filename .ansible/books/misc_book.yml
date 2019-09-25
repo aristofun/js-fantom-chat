@@ -17,6 +17,14 @@
         value: '{{ _cron_mailto }}'
       when: _cron_mailto is defined
 
+#/var/lib/docker/containers/*/*.log {
+#  rotate 7
+#  daily
+#  compress
+#  missingok
+#  delaycompress
+#  copytruncate
+#}
 
 # How 2check:
 # crontab -e (MAILTO var)
