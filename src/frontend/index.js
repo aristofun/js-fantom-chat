@@ -16,7 +16,7 @@ router.get('/healthz__', (req, res) => {
   // do app logic here to determine if app is truly healthy
   // you should return 200 if healthy, and anything else will fail
   // if you want, you should be able to restrict this to localhost (include ipv4 and ipv6)
-  res.send('I am happy 2 and healthy\n');
+  res.send('I am happy 4 and healthy\n');
 });
 
 router.get('/chat', (req, res, next) => {
