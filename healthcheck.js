@@ -4,7 +4,7 @@ const options = {
   timeout: 2000,
   host: 'localhost',
   port: process.env.PORT || 3000,
-  path: '/healthz__' // must be the same as HEALTHCHECK in Dockerfile
+  path: '/healthz__' // must be the same as HEALTHCHECK in Dockerfile.app
 };
 
 const request = http.request(options, (res) => {

@@ -10,7 +10,7 @@ push:
 	docker-compose push
 
 deploy: build push
-	docker stack deploy --with-registry-auth --compose-file docker-stack.yml socketchat-app
+	docker stack deploy --with-registry-auth --prune --compose-file docker-stack.yml socketchat-app
 
 status:
 	docker stack ls
