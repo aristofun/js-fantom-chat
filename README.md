@@ -3,7 +3,7 @@ Fantom chat — live while clients are alive, not messages persistency. Demo JS 
 
 ## Demo
 
-HTTP VPS version: https://chat.tubi.ru:8088/
+HTTP VPS version: https://chat.tubi.ru/
 
 Heroku HTTPS: https://fantom-chat.herokuapp.com/
 
