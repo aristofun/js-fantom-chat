@@ -21,38 +21,16 @@ services:
       - "443:443"
       - "8088:8088"
     volumes:
-      - certs:/etc/letsencrypt
-#      - ./data/certbot/www:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/certbot:/var/www/certbot
+    labels:
+      - letsencrypt.role=listener
     deploy:
       replicas: 1
       update_config:
         order: stop-first
 
-
-#  certbot:
-#    build: .
-#    image: ebarault/letsencrypt-autorenew-docker:latest
-#    ports:
-#      - "443:443"
-#    volumes:
-#      - certs:/certs
-#      - ./letsencrypt:/etc/letsencrypt
-#      - ./var_log_letsencrypt:/var/log/letsencrypt
-#    restart: always
-#    environment:
-# - WEBROOT=/path/to/web_root
-#      - LOGFILE=/var/log/letsencrypt/certrenewal.log
-#      - DEBUG=false
-#      - STAGING=false
-#      - DOMAINS=chat.tubi.ru
-#      - EMAIL=boatman@list.ru
-#      - CONCAT=false
-#      - HEALTH_CHECK_URL=chat.tubi.ru:80
-
-
-volumes:
-  certs:
-
+# nginx reload https://github.com/gchan/auto-letsencrypt/blob/95ff218cd750c40c24518e6f7fd80816dc413ae4/entrypoint.sh
 #secrets:
 #  mongo_root:
 #    file: ...

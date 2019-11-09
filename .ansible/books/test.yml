@@ -19,15 +19,16 @@
       when: swarm_role == 'leader'
 
     - name: Print some debug information
-      vars:
-        #        msg: "{{ host_name }}"
+#      vars:
+#        msg: "{{ host_name }}"
       debug:
-#        msg: "{{ msg }}"
+        msg: |
+          {{ STACK_NAME }}
+          ------
+          {{ letsencrypt is defined and letsencrypt }}
 
-
-    - debug:
         #        var: hostvars[inventory_hostname]
-        msg: "{{ swarm_worker_token.stdout_lines }}"
+#        msg: "{{ swarm_worker_token.stdout_lines }}"
 #        msg: "{{ hostvars | selectattr('swarm_role', 'equalto', 'leader') | map(attribute='ansible_host') | join(',')}}"
 
 #    - name: copy all

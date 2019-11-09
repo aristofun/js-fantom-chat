@@ -1,0 +1,48 @@
+# Docker config files provisioning
+---
+- name: Prepare SSL-ed hosts
+  hosts: docker*
+  max_fail_percentage: 1
+  order: sorted
+  remote_user: '{{ _remote_user }}'
+  become: false
+
+  vars:
+    certbot_auto_renew_user: root # only root can update certificates :(
+    certbot_auto_renew_options: '--webroot -w /var/www/certbot --max-log-backups 30 --no-self-upgrade --deploy-hook "{{ _nginx_reload_cmd }}" | logger'
+
+    certbot_install_from_source: yes
+    certbot_auto_renew_hour: 3
+    certbot_auto_renew_minute: 17
+
+    certbot_create_if_missing: yes
+    certbot_create_method: standalone
+
+    certbot_admin_email: "{{ _ssl_email }}"
+    certbot_certs:
+      - domains: "{{ _ssl_domains }}"
+
+    certbot_create_standalone_stop_services: []
+
+  roles:
+    - role: geerlingguy.certbot
+      when: letsencrypt is defined and letsencrypt
+
+  pre_tasks:
+    - name: create ACME dir
+      file:
+        path: /var/www/certbot
+        state: directory
+      when: letsencrypt is defined and letsencrypt
+
+    - name: Remove stack (if any)
+      docker_stack:
+        name: "{{ STACK_NAME }}"
+        state: absent
+      when: swarm_role == 'leader'
+
+#  https://finnian.io/blog/ssl-with-docker-swarm-lets-encrypt-and-nginx/
+#  handlers:
+#    - name: restart nginx
+#      become: true
+#      service: name=nginx state=restarted

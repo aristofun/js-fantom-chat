@@ -31,9 +31,11 @@ pip_executable: pip3
 
 pip_install_packages:
   - name: docker
+  - name: jsondiff # check if needed, I know it is for swarm but don't know about compose
+  - name: pyyaml # check if needed, I know it is for swarm but don't know about compose
 
 # Make swarm raft less aggressive
 swarm_dispatcher_ca_period: 2160h
-swarm_dispatcher_heartbeat_period: 22s
-swarm_raft_election_tick: 200
-swarm_raft_heartbeat_tick: 3
+swarm_dispatcher_heartbeat_period: 13s
+swarm_raft_election_tick: 100
+swarm_raft_heartbeat_tick: 2
