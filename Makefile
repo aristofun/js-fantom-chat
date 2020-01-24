@@ -1,7 +1,7 @@
 # .PHONY: app test log doc
 .PHONY: test
 
-export DOCKER_HOST := ssh://root@178.62.184.188
+export DOCKER_HOST := ssh://root@178.62.229.43
 export STACK_NAME=socketchat-app
 
 build:
