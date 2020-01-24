@@ -20,9 +20,6 @@ services:
       - "80:80"
       - "443:443"
       - "8088:8088"
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /var/www/certbot:/var/www/certbot
     labels:
       - letsencrypt.role=listener
     deploy:
