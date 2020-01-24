@@ -1,15 +1,5 @@
 server {
-  listen 80;
-  server_name chat.tubi.ru;
-
-  location /.well-known/acme-challenge/ {
-    root /var/www/certbot;
-  }
-}
-
-server {
   listen 8088;
-  server_name chat.tubi.ru;
 
   location / {
     proxy_set_header Upgrade $http_upgrade;

@@ -15,10 +15,6 @@ _aptupgrade: yes # upgrade APT packages before provisioning
 
 _remote_user: root
 
-_ssl_email: aristofun@yandex.ru
-_ssl_domains:
-  - chat.tubi.ru
-
 _nginx_reload_cmd: docker kill -s HUP $(docker ps --filter label=letsencrypt.role=listener -q)
 
 

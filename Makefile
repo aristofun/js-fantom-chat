@@ -24,21 +24,12 @@ status:
 
 logs:
 	docker service ps --no-trunc socketchat-app_nginx
-	docker service ps --no-trunc socketchat-app_letsencrypt
 	docker service ps --no-trunc socketchat-app_node
 
+# Local node server run
 run:
 	npm run dev
 
-provision-ssl:
-	ansible-playbook .ansible/books/docker_letsencrypt.yml -e STACK_NAME=$(STACK_NAME)
-
+# Provision remote host - prepare swarm cluster with ansible playbooks
 provision:
 	ansible-playbook .ansible/books/go.yml
-	make provision-ssl
-
-test-nginx-container:
-	docker run -p 80:80 -p 443:443 -p 8088:8088 -v /etc/letsencrypt:/etc/letsencrypt registry.gitlab.com/aristofun/docker-tests/socketchat-nginx:latest
-
-check-nginx-pid:
-	 docker exec $$(docker ps --filter label=letsencrypt.role=listener -q) sh -c ps
